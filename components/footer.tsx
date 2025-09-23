@@ -1,6 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
+import { LinkPreview } from "@/components/ui/link-preview"
 import { Mail, Phone, MapPin, Twitter, Instagram, Youtube, School, ExternalLink } from "lucide-react"
 
 export default function Footer() {
@@ -14,7 +15,7 @@ export default function Footer() {
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 mb-8 md:mb-12">
           {/* School Info */}
           <motion.div
             initial={{ y: 50, opacity: 0 }}
@@ -24,9 +25,9 @@ export default function Footer() {
           >
             <div className="flex items-center gap-3 mb-6">
               <School className="w-8 h-8 text-secondary" />
-              <h3 className="text-xl font-bold">ثانوية الأمير مقرن</h3>
+              <h3 className="text-lg md:text-xl font-bold cursor-target">ثانوية الأمير مقرن</h3>
             </div>
-            <p className="text-white/80 leading-relaxed mb-4">
+            <p className="text-white/80 leading-relaxed mb-4 cursor-target text-sm md:text-base">
               مدرسة رائدة في التعليم والتربية، نسعى لإعداد جيل واعٍ ومبدع يساهم في بناء وطننا الغالي المملكة العربية
               السعودية.
             </p>
@@ -35,18 +36,29 @@ export default function Footer() {
                 href="https://pmss.pw/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-secondary/20 transition-colors cursor-pointer"
+                className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-secondary/20 transition-colors cursor-pointer cursor-target"
               >
                 <ExternalLink className="w-5 h-5" />
               </a>
-              <div className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-secondary/20 transition-colors cursor-pointer">
+              <a
+                href="https://x.com/MOE_RYH_17_0088"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-secondary/20 transition-colors cursor-pointer cursor-target"
+                aria-label="تويتر / X"
+              >
                 <Twitter className="w-5 h-5" />
-              </div>
+              </a>
               <div className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-secondary/20 transition-colors cursor-pointer">
-                <Instagram className="w-5 h-5" />
-              </div>
-              <div className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-secondary/20 transition-colors cursor-pointer">
-                <Youtube className="w-5 h-5" />
+                <a
+                  href="https://www.youtube.com/@muqrinschool1059/videos/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="يوتيوب"
+                  className="flex items-center justify-center w-full h-full"
+                >
+                  <Youtube className="w-5 h-5" />
+                </a>
               </div>
             </div>
           </motion.div>
@@ -58,31 +70,28 @@ export default function Footer() {
             transition={{ duration: 0.6, delay: 0.1 }}
             viewport={{ once: true }}
           >
-            <h3 className="text-xl font-bold mb-6 text-secondary">روابط سريعة</h3>
+            <h3 className="text-xl font-bold mb-6 text-secondary cursor-target">روابط سريعة</h3>
             <ul className="space-y-3">
               <li>
-                <a
-                  href="https://pmss.pw/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-white/80 hover:text-secondary transition-colors flex items-center gap-2"
-                >
-                  الموقع الرسمي
-                  <ExternalLink className="w-4 h-4" />
-                </a>
+                <LinkPreview url="https://pmss.pw/">
+                  <span className="text-white/80 hover:text-secondary transition-colors flex items-center gap-2 cursor-pointer cursor-target">
+                    الموقع الرسمي
+                    <ExternalLink className="w-4 h-4" />
+                  </span>
+                </LinkPreview>
               </li>
               <li>
-                <a href="#events" className="text-white/80 hover:text-secondary transition-colors">
+                <a href="#events" className="text-white/80 hover:text-secondary transition-colors cursor-target"> 
                   الفعاليات
                 </a>
               </li>
               <li>
-                <a href="#gallery" className="text-white/80 hover:text-secondary transition-colors">
+                <a href="#gallery" className="text-white/80 hover:text-secondary transition-colors cursor-target">
                   المعرض
                 </a>
               </li>
               <li>
-                <a href="#teachers" className="text-white/80 hover:text-secondary transition-colors">
+                <a href="#teachers" className="text-white/80 hover:text-secondary transition-colors cursor-target">
                   المعلمون
                 </a>
               </li>
@@ -91,7 +100,7 @@ export default function Footer() {
                   href="https://pmss.pw/about"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-white/80 hover:text-secondary transition-colors flex items-center gap-2"
+                  className="text-white/80 hover:text-secondary transition-colors flex items-center gap-2 cursor-target"
                 >
                   عن المدرسة
                   <ExternalLink className="w-4 h-4" />
@@ -102,7 +111,7 @@ export default function Footer() {
                   href="https://pmss.pw/news"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-white/80 hover:text-secondary transition-colors flex items-center gap-2"
+                  className="text-white/80 hover:text-secondary transition-colors flex items-center gap-2 cursor-target"
                 >
                   الأخبار
                   <ExternalLink className="w-4 h-4" />
@@ -111,101 +120,71 @@ export default function Footer() {
             </ul>
           </motion.div>
 
-          {/* Academic Programs */}
+          {/* Other Links */}
           <motion.div
             initial={{ y: 50, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            <h3 className="text-xl font-bold mb-6 text-secondary">البرامج الأكاديمية</h3>
+            <h3 className="text-xl font-bold mb-6 text-secondary cursor-target">روابط أخرى</h3>
             <ul className="space-y-3">
               <li>
-                <a
-                  href="https://pmss.pw/programs/science"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-white/80 hover:text-secondary transition-colors"
-                >
-                  المسار العلمي
-                </a>
+                <LinkPreview url="https://pmss.pw/html/store.html">
+                  <span className="text-white/80 hover:text-secondary transition-colors flex items-center gap-2 cursor-pointer cursor-target">
+                    المتجر
+                    <ExternalLink className="w-4 h-4" />
+                  </span>
+                </LinkPreview>
               </li>
               <li>
-                <a
-                  href="https://pmss.pw/programs/literature"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-white/80 hover:text-secondary transition-colors"
-                >
-                  المسار الأدبي
-                </a>
+                <LinkPreview url="https://pmss.pw/html/ctivities.html#clubs">
+                  <span className="text-white/80 hover:text-secondary transition-colors flex items-center gap-2 cursor-pointer cursor-target">
+                    النوادي
+                    <ExternalLink className="w-4 h-4" />
+                  </span>
+                </LinkPreview>
               </li>
               <li>
-                <a
-                  href="https://pmss.pw/programs/gifted"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-white/80 hover:text-secondary transition-colors"
-                >
-                  برامج الموهوبين
-                </a>
+                <LinkPreview url="https://pmss.pw/index.html#link-footer-3">
+                  <span className="text-white/80 hover:text-secondary transition-colors flex items-center gap-2 cursor-pointer cursor-target">
+                    الجوائز والشراكات
+                    <ExternalLink className="w-4 h-4" />
+                  </span>
+                </LinkPreview>
               </li>
               <li>
-                <a
-                  href="https://pmss.pw/activities"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-white/80 hover:text-secondary transition-colors"
-                >
-                  الأنشطة اللاصفية
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://pmss.pw/clubs"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-white/80 hover:text-secondary transition-colors"
-                >
-                  النوادي العلمية
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://pmss.pw/competitions"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-white/80 hover:text-secondary transition-colors"
-                >
-                  المسابقات
-                </a>
+                <LinkPreview url="https://pmss.pw/index.html#link-footer-4">
+                  <span className="text-white/80 hover:text-secondary transition-colors flex items-center gap-2 cursor-pointer cursor-target">
+                    سوق العمل الحر
+                    <ExternalLink className="w-4 h-4" />
+                  </span>
+                </LinkPreview>
               </li>
             </ul>
           </motion.div>
-
-          {/* Contact Info */}
           <motion.div
             initial={{ y: 50, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.3 }}
             viewport={{ once: true }}
           >
-            <h3 className="text-xl font-bold mb-6 text-secondary">تواصل معنا</h3>
+            <h3 className="text-xl font-bold mb-6 text-secondary cursor-target">تواصل معنا</h3>
             <div className="space-y-4">
               <div className="flex items-center gap-3">
                 <MapPin className="w-5 h-5 text-secondary flex-shrink-0" />
-                <span className="text-white/80">الرياض، حي الملك فهد، المملكة العربية السعودية</span>
+                <span className="text-white/80 cursor-target">الرياض, المملكة العربية السعود</span>
               </div>
               <div className="flex items-center gap-3">
                 <Phone className="w-5 h-5 text-secondary flex-shrink-0" />
-                <a href="tel:+966114567890" className="text-white/80 hover:text-secondary transition-colors" dir="ltr">
-                  +966 11 456 7890
+                <a href="tel:+966501669572" className="text-white/80 hover:text-secondary transition-colors cursor-target" dir="ltr">
+                  +966 50 166 9572
                 </a>
               </div>
               <div className="flex items-center gap-3">
                 <Mail className="w-5 h-5 text-secondary flex-shrink-0" />
-                <a href="mailto:info@pmss.pw" className="text-white/80 hover:text-secondary transition-colors">
-                  info@pmss.pw
+                <a href="mailto:muqrinschool2121@gmail.com" className="text-white/80 hover:text-secondary transition-colors cursor-target">
+                  muqrinschool2121@gmail.com
                 </a>
               </div>
               <div className="flex items-center gap-3">
@@ -214,7 +193,7 @@ export default function Footer() {
                   href="https://pmss.pw"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-white/80 hover:text-secondary transition-colors"
+                  className="text-white/80 hover:text-secondary transition-colors cursor-target"
                 >
                   pmss.pw
                 </a>
@@ -238,16 +217,11 @@ export default function Footer() {
           </div>
           <p className="text-white/60 mb-2">© 2024 ثانوية الأمير مقرن بن عبدالعزيز. جميع الحقوق محفوظة.</p>
           <p className="text-white/40 text-sm">تم التطوير بكل فخر واعتزاز احتفالاً باليوم الوطني السعودي المجيد</p>
-          <p className="text-white/40 text-sm mt-2">
-            <a
-              href="https://pmss.pw"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-secondary transition-colors"
-            >
-              زيارة الموقع الرسمي: pmss.pw
-            </a>
-          </p>
+          <div className="text-white/40 text-sm mt-2">
+            <LinkPreview url="https://pmss.pw">
+              <span className="hover:text-secondary transition-colors cursor-pointer cursor-target">زيارة الموقع الرسمي: pmss.pw</span>
+            </LinkPreview>
+          </div>
         </motion.div>
       </div>
     </footer>

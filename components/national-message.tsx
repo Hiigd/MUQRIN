@@ -40,7 +40,12 @@ export default function NationalMessage() {
         >
           <div className="flex items-center justify-center gap-4 mb-8">
             <Heart className="w-12 h-12 text-primary" />
-            <h2 className="text-4xl md:text-5xl font-bold text-primary">رسالتنا في اليوم الوطني المجيد</h2>
+            <h2
+              className="text-4xl md:text-5xl font-bold text-white cursor-target"
+              style={{ textShadow: "0 2px 24px #0c672f, 0 0 8px #93DBB2, 0 0 2px #fff" }}
+            >
+              رسالتنا في اليوم الوطني المجيد
+            </h2>
             <Heart className="w-12 h-12 text-primary" />
           </div>
 
@@ -57,7 +62,7 @@ export default function NationalMessage() {
                 "
               </div>
 
-              <p className="text-lg md:text-xl leading-relaxed text-foreground relative z-10 px-12">
+              <p className="text-lg md:text-xl leading-relaxed text-white relative z-10 px-12" style={{textShadow: "0 2px 24px #0c672f, 0 0 8px #93DBB2, 0 0 2px #fff"}}>
                 {displayedText}
                 {currentIndex < message.length && <span className="animate-pulse">|</span>}
               </p>

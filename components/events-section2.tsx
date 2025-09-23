@@ -4,7 +4,7 @@ import { motion } from "framer-motion"
 import { Calendar, Trophy, Users, BookOpen, Star, Award, ArrowLeft, Zap } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import StickerPeel from "@/components/StickerPeel"
+
 import { useState, useRef, useEffect } from "react"
 import { Dialog } from "@/components/ui/dialog"
 import ProfileCard from "@/components/ui/ProfileCard";
@@ -19,10 +19,29 @@ interface Event {
   status: string;
   color: string;
   icon: any;
-}
 
-export default function EventsSection() {
+
   const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
+  const [stickers, setStickers] = useState<{x: number, y: number, id: number}[]>([]);
+  const stickerId = useRef(0);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key.toLowerCase() === 'j') {
+        // احصل على إحداثيات الماوس الأخيرة
+        document.body.style.cursor = 'crosshair';
+        const handleClick = (ev: MouseEvent) => {
+          stickerId.current += 1;
+          setStickers((prev) => [...prev, { x: ev.clientX, y: ev.clientY, id: stickerId.current }]);
+          document.body.style.cursor = '';
+          window.removeEventListener('click', handleClick, true);
+        };
+        window.addEventListener('click', handleClick, true);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
 
   const events: Event[] = [
 	{
@@ -79,7 +98,13 @@ export default function EventsSection() {
   return (
     <>
       <section className="py-20 relative overflow-hidden">
+
         <div className="container mx-auto px-4 relative z-10">
+          <div className="flex items-center gap-4 mb-12 justify-center">
+            <Zap className="w-10 h-10 text-yellow-400 drop-shadow-lg" />
+            <h2 className="text-4xl md:text-5xl font-bold text-white" style={{textShadow:'0 2px 16px rgba(0,0,0,0.85),0 0 2px #93DBB2'}}>فعالياتنا وإنجازاتنا</h2>
+            <div className="ml-2"></div>
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {events.map((event) => (
               <motion.div key={event.id} className="group perspective-1000">
@@ -120,25 +145,24 @@ export default function EventsSection() {
               </motion.div>
             ))}
           </div>
-        </div>
-
-        {selectedEvent && (
-          <Dialog open={!!selectedEvent} onOpenChange={() => setSelectedEvent(null)}>
-            <div className="fixed inset-0 flex items-center justify-center bg-black/50 z-50">
-              <div className="w-full max-w-md mx-auto">
-                <ProfileCard
-                  avatarUrl={selectedEvent.image}
-                  name={selectedEvent.title}
-                  title="تفاصيل الفعالية"
-                  description={selectedEvent.description}
-                  status={`${selectedEvent.participants} مشارك`}
-                  contactText="إغلاق"
-                  onContactClick={() => setSelectedEvent(null)}
-                />
+          {selectedEvent && (
+            <Dialog open={!!selectedEvent} onOpenChange={() => setSelectedEvent(null)}>
+              <div className="fixed inset-0 flex items-center justify-center bg-black/50 z-50">
+                <div className="w-full max-w-md mx-auto">
+                  <ProfileCard
+                    avatarUrl={selectedEvent.image}
+                    name={selectedEvent.title}
+                    title="تفاصيل الفعالية"
+                    description={selectedEvent.description}
+                    status={`${selectedEvent.participants} مشارك`}
+                    contactText="إغلاق"
+                    onContactClick={() => setSelectedEvent(null)}
+                  />
+                </div>
               </div>
-            </div>
-          </Dialog>
-        )}
+            </Dialog>
+          )}
+        </div>
       </section>
     </>
   );

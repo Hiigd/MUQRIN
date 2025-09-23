@@ -19,40 +19,49 @@ const teachers = [
 },
   {
     id: 2,
-    name: "الأستاذة فاطمة الزهراني",
-    position: "معلمة اللغة العربية",
-    experience: "12 سنة",
+    name: "الأستاذ عبدالعزيز ال عريج",
+    position: "رائد نشاط",
+    experience: "27 سنة",
     message:
-      "اللغة العربية هي لغة القرآن الكريم ولغة أجدادنا العظماء. في يومنا الوطني، نؤكد على أهمية الحفاظ على هويتنا العربية والإسلامية. طلابنا هم حملة الرسالة للأجيال القادمة.",
+      "في هذا اليوم الغالي نجدد العهد والولاء لوطننا العزيز، ونستذكر مسيرة العطاء التي بناها الآباء والأجداد، ونفخر بالمنجزات التي تحققت في عهد قيادتنا الرشيدة. اليوم الوطني مناسبة لترسيخ قيم الانتماء والفخر، ولغرس حب الوطن في نفوس أبنائنا الطلاب، ليكونوا جيلًا واعيًا يواصل مسيرة البناء والعطاء.",
     image: "/images/teachers/teacher-2.jpg", // Updated to use actual image path
     icon: BookOpen,
-    specialty: "الأدب والبلاغة",
+    specialty: "ادارة النشاطات والمناسبات",
   },
   {
     id: 3,
-    name: "الأستاذ محمد الغامدي",
-    position: "معلم التاريخ",
-    experience: "18 سنة",
+    name: "الأستاذ بندر الظويلمي",
+    position: "معلم الرياضيات",
+    experience: "10 سنة",
     message:
-      "تاريخ المملكة العربية السعودية مليء بالإنجازات والبطولات. من توحيد المملكة على يد الملك عبدالعزيز إلى رؤية 2030، نحن نشهد نهضة حقيقية. أبناؤنا الطلاب هم صناع المستقبل.",
+      "في ذكرى اليوم الوطني الخامس والتسعين، نستشعر نعمة هذا الوطن المعطاء الذي جمعنا على الأمن والإيمان، ووحّد صفوفنا تحت راية التوحيد. هي مناسبة نجدد فيها الولاء لقيادتنا الرشيدة، ونغرس معاني الانتماء والفخر في نفوس أبنائنا، ليواصلوا مسيرة العطاء والبناء. دام عزك يا وطن، ودمت شامخًا في القلوب والوجدان.",
+
     image: "/images/teachers/teacher-3.jpg", // Updated to use actual image path
     icon: Users,
-    specialty: "التاريخ السعودي",
+    specialty: "علم الرياضيات",
   },
   {
     id: 4,
-    name: "الأستاذة نورا السلمي",
-    position: "معلمة العلوم",
+    name: "الأستاذ فواز غازي",
+    position: "معلم الدين والتاريخ والجغرافيا",
     experience: "10 سنوات",
     message:
-      "العلم والتكنولوجيا هما مفتاح التقدم في عصرنا الحالي. المملكة تستثمر في التعليم والبحث العلمي، ونحن نعد جيلاً قادراً على المساهمة في بناء اقتصاد المعرفة. فخورة بكوني جزءاً من هذه المسيرة.",
+      "بسم الله الرحمن الرحيم الحمد لله رب العالمين والصلاة والسلام على أشرف الأمم المرسلين من نعم الله عز وجل علينا في هذا البلد العظيم وفي هذا البلد المحفاة نعمة الأمن والأمان التي من الله بها علينا في هذا البلد المبارك العظيم فمثل هذه النعمة ينبغي للإنسان وللمسلم أن يشكر الله عز وجل وأن يؤدي شكر هذه النعمة بالدعاء لهذا البلد وكذلك بالدعاء لولاة أمره الذين بذلوا الغالي والرخيص في تثبيت مثل هذه الأمور نعمة الأمن وراحة المواطن أسأل الله عز وجل أن يديمها علينا وأن يحفظ لولاة أمورنا وصلى الله وسلم على نبينا محمد.",
     image: "/images/teachers/teacher-4.jpg", // Updated to use actual image path
     icon: BookOpen,
-    specialty: "العلوم التطبيقية",
+    specialty: "الدراسات الادبية والاجتماعية",
   },
 ]
 
+
+
 export default function TeachersSection() {
+  /* Apply the same style as "رسائل معلمينا" */
+  const messageStyle = {
+    color: "#ffffff", // White text color
+    textShadow: "0 2px 24px #0c672f, 0 0 8px #93DBB2, 0 0 2px #fff", // Same neon effect as heading
+  };
+
   return (
     <section id="teachers" className="py-20 relative overflow-hidden">
       <div className="absolute inset-0 opacity-5">
@@ -101,7 +110,8 @@ export default function TeachersSection() {
             whileInView={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.4 }}
             viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-bold text-primary mb-6"
+            className="text-4xl md:text-5xl font-bold text-white mb-6 cursor-target"
+            style={{ textShadow: "0 2px 24px #0c672f, 0 0 8px #93DBB2, 0 0 2px #fff" }}
           >
             رسائل معلمينا
           </motion.h2>
@@ -111,7 +121,8 @@ export default function TeachersSection() {
             whileInView={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.6 }}
             viewport={{ once: true }}
-            className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed"
+            className="text-xl text-white max-w-3xl mx-auto leading-relaxed"
+            style={{ textShadow: "0 2px 12px #0c672f, 0 0 8px #93DBB2, 0 0 2px #fff", color: '#fff' }}
           >
             كلمات من القلب من معلمينا الأفاضل في هذا اليوم الوطني المجيد
           </motion.p>
@@ -141,7 +152,7 @@ export default function TeachersSection() {
               <Card className="glass-card hover:shadow-2xl transition-all duration-500 h-full relative overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-r from-primary/20 via-secondary/20 to-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-                <CardContent className="p-8 relative z-10">
+                <CardContent className="p-8 relative z-10" style={messageStyle}>
                   <div className="flex items-start gap-6 mb-6">
                     <div className="relative flex-shrink-0">
                       <motion.div className="relative" whileHover={{ scale: 1.1 }} transition={{ duration: 0.3 }}>
@@ -153,38 +164,21 @@ export default function TeachersSection() {
                             whileHover={{ scale: 1.1 }}
                             transition={{ duration: 0.3 }}
                           />
-                          <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                         </div>
-
-                        <motion.div
-                          className="absolute -bottom-2 -right-2 w-10 h-10 bg-gradient-to-r from-secondary to-yellow-400 rounded-full flex items-center justify-center shadow-lg"
-                          whileHover={{ rotate: 360, scale: 1.2 }}
-                          transition={{ duration: 0.5 }}
-                        >
-                          <Quote className="w-5 h-5 text-white" />
-                        </motion.div>
-
-                        <motion.div
-                          className="absolute -top-2 -left-2 w-8 h-8 bg-primary rounded-full flex items-center justify-center"
-                          animate={{ rotate: [0, 10, -10, 0] }}
-                          transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
-                        >
-                          <teacher.icon className="w-4 h-4 text-white" />
-                        </motion.div>
                       </motion.div>
                     </div>
 
                     <div className="flex-1">
                       <motion.h3
-                        className="text-xl font-bold text-primary mb-2 group-hover:text-secondary transition-colors"
+                        className="text-xl font-bold text-white mb-2 group-hover:text-secondary transition-colors"
                         whileHover={{ x: 5 }}
                       >
                         {teacher.name}
                       </motion.h3>
-                      <p className="text-muted-foreground mb-1">{teacher.position}</p>
-                      <p className="text-sm text-secondary font-medium mb-2">خبرة {teacher.experience}</p>
+                      <p className="text-white mb-1">{teacher.position}</p>
+                      <p className="text-sm" style={{ color: '#FFD700', fontWeight: 'bold' }}>خبرة {teacher.experience}</p>
                       <motion.p
-                        className="text-xs text-primary/70 bg-primary/10 px-2 py-1 rounded-full inline-block"
+                        className="text-xs text-white bg-primary/10 px-2 py-1 rounded-full inline-block"
                         whileHover={{ scale: 1.05 }}
                       >
                         {teacher.specialty}
@@ -194,7 +188,7 @@ export default function TeachersSection() {
 
                   <motion.blockquote className="relative" whileHover={{ x: 5 }} transition={{ duration: 0.3 }}>
                     <div className="absolute top-0 right-0 text-6xl text-primary/10 leading-none font-serif">״</div>
-                    <p className="text-foreground leading-relaxed text-lg relative z-10 pr-8 font-medium">
+                    <p className="text-white leading-relaxed text-lg relative z-10 pr-8 font-medium" style={{textShadow: "0 2px 24px #0c672f, 0 0 8px #93DBB2, 0 0 2px #fff"}}>
                       {teacher.message}
                     </p>
                     <div className="absolute bottom-0 left-0 text-6xl text-primary/10 leading-none rotate-180 font-serif">
@@ -214,6 +208,8 @@ export default function TeachersSection() {
           ))}
         </div>
       </div>
+
     </section>
   )
 }
+

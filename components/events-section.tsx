@@ -1,9 +1,12 @@
+
 "use client"
+
 
 import { motion } from "framer-motion"
 import { Calendar, Trophy, Users, BookOpen, Star, Award, ArrowLeft, Zap } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
+
+import { useState } from "react"
 
 const events = [
 	{
@@ -20,13 +23,13 @@ const events = [
 	},
 	{
 		id: 2,
-		title: "معرض التراث السعودي الأصيل",
+		title: "ورشة الابتكار والتقنية",
 		description:
-			"معرض يعرض التراث الشعبي والثقافة السعودية الأصيلة بمشاركة طلاب ثانوية الأمير مقرن",
+			"ورشة عملية تُمكّن طلاب ثانوية الأمير مقرن من تنمية مهاراتهم في البرمجة والتقنية وصناعة الروبوتات، وسط أجواء من التعاون والإبداع.",
 		icon: Star,
 		date: "24 سبتمبر 2024",
 		participants: 200,
-		image: "/saudi-heritage-exhibition-traditional-items.jpg",
+		image: "/نادي الربوت 2.jpg",
 		status: "جارية",
 		color: "from-amber-500 to-orange-600",
 	},
@@ -56,13 +59,13 @@ const events = [
 	},
 	{
 		id: 5,
-		title: "مسرحية توحيد المملكة",
+		title: "معرض العلوم والتجارب المخبرية",
 		description:
-			"عرض مسرحي يحكي قصة توحيد المملكة على يد الملك المؤسس عبدالعزيز آل سعود",
+			"فعالية علمية تتيح لطلاب ثانوية الأمير مقرن استكشاف أسرار الطبيعة عبر التجارب العملية والتعلم بالنمذجة في بيئة محفزة على البحث والاكتشاف.",
 		icon: Award,
 		date: "27 سبتمبر 2024",
 		participants: 80,
-		image: "/saudi-national-theater-play-king-abdulaziz.jpg",
+		image: "/edu.jpg",
 		status: "قريباً",
 		color: "from-red-500 to-pink-600",
 	},
@@ -81,6 +84,8 @@ const events = [
 ]
 
 export default function EventsSection() {
+
+
   return (
     <section id="events" className="py-20 relative overflow-hidden">
       <div className="absolute inset-0 opacity-5">
@@ -152,22 +157,27 @@ export default function EventsSection() {
             </div>
           </motion.div>
 
-          <motion.h2
-            initial={{ y: 30, opacity: 0 }}
-            whileInView={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-bold text-primary mb-6"
-          >
-            فعالياتنا وإنجازاتنا
-          </motion.h2>
+          <div className="flex items-center gap-4 mb-6 justify-center text-center">
+            <motion.h2
+              initial={{ y: 30, opacity: 0 }}
+              whileInView={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              viewport={{ once: true }}
+              className="text-4xl md:text-5xl font-bold text-white cursor-target"
+              style={{ textShadow: "0 2px 16px rgba(0,0,0,0.85), 0 0 2px #93DBB2" }}
+            >
+              فعالياتنا وإنجازاتنا
+            </motion.h2>
+
+          </div>
 
           <motion.p
             initial={{ y: 30, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.6 }}
             viewport={{ once: true }}
-            className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed"
+            className="text-xl text-white max-w-3xl mx-auto leading-relaxed"
+            style={{ textShadow: "0 2px 12px rgba(0,0,0,0.7), 0 0 8px #93DBB2" }}
           >
             نفخر بتنظيم فعاليات متنوعة تعزز الهوية الوطنية وتنمي مواهب طلابنا في جو من الإبداع والتميز
           </motion.p>
@@ -278,21 +288,13 @@ export default function EventsSection() {
                     </motion.div>
                   </div>
 
-                  <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="w-full group-hover:bg-primary group-hover:text-white transition-all duration-300 bg-transparent"
-                    >
-                      <span>المزيد من التفاصيل</span>
-                      <ArrowLeft className="w-4 h-4 mr-2 group-hover:translate-x-1 transition-transform" />
-                    </Button>
-                  </motion.div>
+
                 </CardContent>
               </Card>
             </motion.div>
           ))}
         </div>
+
       </div>
     </section>
   )

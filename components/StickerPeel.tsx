@@ -1,4 +1,3 @@
-
 import { useRef, useEffect, useMemo, CSSProperties } from 'react';
 import { gsap } from 'gsap';
 import { Draggable } from 'gsap/Draggable';
@@ -80,9 +79,13 @@ const StickerPeel: React.FC<StickerPeelProps> = ({
     if (!target) return;
 
 
+    // Use window as bounds for fixed stickers, else parent
+    const isFixed = window.getComputedStyle(target).position === 'fixed';
+    const bounds = isFixed ? window : (target.parentNode as HTMLElement);
+
     const draggable = Draggable.create(target, {
       type: 'x,y',
-      bounds: window,
+      bounds,
       inertia: true,
       onDrag(this: Draggable) {
         const rot = gsap.utils.clamp(-24, 24, this.deltaX * 0.4);
@@ -97,9 +100,38 @@ const StickerPeel: React.FC<StickerPeelProps> = ({
 
     draggableInstanceRef.current = draggable[0];
 
+
     const handleResize = () => {
       if (draggableInstanceRef.current) {
         draggableInstanceRef.current.update();
+
+        const currentX = gsap.getProperty(target, 'x') as number;
+        const currentY = gsap.getProperty(target, 'y') as number;
+
+        let boundsRect;
+        if (bounds === window) {
+          boundsRect = { width: window.innerWidth, height: window.innerHeight };
+        } else if (bounds && typeof (bounds as HTMLElement).getBoundingClientRect === 'function') {
+          boundsRect = (bounds as HTMLElement).getBoundingClientRect();
+        } else {
+          boundsRect = { width: 0, height: 0 };
+        }
+        const targetRect = target.getBoundingClientRect();
+
+        const maxX = boundsRect.width - targetRect.width;
+        const maxY = boundsRect.height - targetRect.height;
+
+        const newX = Math.max(0, Math.min(currentX, maxX));
+        const newY = Math.max(0, Math.min(currentY, maxY));
+
+        if (newX !== currentX || newY !== currentY) {
+          gsap.to(target, {
+            x: newX,
+            y: newY,
+            duration: 0.3,
+            ease: 'power2.out'
+          });
+        }
       }
     };
 

@@ -1,8 +1,12 @@
 "use client"
 
 import { motion, AnimatePresence } from "framer-motion"
-import { Flag, School, Star, Sparkles } from "lucide-react"
-import { useState, useEffect } from "react"
+import { Flag, Star, Sparkles } from "lucide-react"
+const schoolLogo = "/logo.jpg"
+import React, { useState, useEffect, useMemo } from "react"
+import ClientOnlyDots from "./ClientOnlyDots"
+import Hyperspeed from "./Hyperspeed"
+import { FireworksBackground } from "@/components/ui/shadcn-io/fireworks-background"
 
 interface IntroPageProps {
   isComplete: boolean
@@ -15,38 +19,69 @@ export default function IntroPage({ isComplete }: IntroPageProps) {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentText((prev) => (prev + 1) % texts.length)
-    }, 2000)
+  }, 2000)
     return () => clearInterval(interval)
   }, [])
 
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-br from-primary via-primary/95 to-primary/90 overflow-hidden">
-      <div className="absolute inset-0 bg-black/20" />
+  const hyperspeedOptions = useMemo(() => ({
+    onSpeedUp: () => { },
+    onSlowDown: () => { },
+    distortion: 'turbulentDistortion',
+    length: 400,
+    roadWidth: 10,
+    islandWidth: 2,
+    lanesPerRoad: 4,
+    fov: 90,
+    fovSpeedUp: 150,
+    speedUp: 2,
+    carLightsFade: 0.4,
+    totalSideLightSticks: 20,
+    lightPairsPerRoadWay: 40,
+    shoulderLinesWidthPercentage: 0.05,
+    brokenLinesWidthPercentage: 0.1,
+    brokenLinesLengthPercentage: 0.5,
+  lightStickWidth: [0.12, 0.5] as [number, number],
+  lightStickHeight: [1.3, 1.7] as [number, number],
+  movingAwaySpeed: [60, 80] as [number, number],
+  movingCloserSpeed: [-120, -160] as [number, number],
+  carLightsLength: [400 * 0.03, 400 * 0.2] as [number, number],
+  carLightsRadius: [0.05, 0.14] as [number, number],
+  carWidthPercentage: [0.3, 0.5] as [number, number],
+  carShiftX: [-0.8, 0.8] as [number, number],
+  carFloorSeparation: [0, 5] as [number, number],
+    colors: {
+      roadColor: 0x080808,
+      islandColor: 0x0a0a0a,
+      background: 0x000000,
+      shoulderLines: 0xFFFFFF,
+      brokenLines: 0xFFFFFF,
+      leftCars: [0xD856BF, 0x6750A2, 0xC247AC],
+      rightCars: [0x03B3C3, 0x0E5EA5, 0x324555],
+      sticks: 0x03B3C3,
+    }
+  }), []);
 
-      <div className="absolute inset-0">
-        {[...Array(10)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-2 h-2 bg-secondary/30 rounded-full"
-            initial={{
-              x: Math.random() * window.innerWidth,
-              y: window.innerHeight + 50,
-              scale: 0,
-            }}
-            animate={{
-              y: -50,
-              scale: [0, 1, 0],
-              rotate: 360,
-            }}
-            transition={{
-              duration: Math.random() * 4 + 3,
-              repeat: Number.POSITIVE_INFINITY,
-              delay: Math.random() * 2,
-              ease: "linear",
-            }}
-          />
-        ))}
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center overflow-hidden">
+      {/* خلفية Hyperspeed ثم الألعاب النارية فوقها */}
+      <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 bg-green-700/90 z-0" />
+        <Hyperspeed effectOptions={hyperspeedOptions} />
+        {/* FireworksBackground ثابت بمفتاح ولا يعاد تهيئته */}
+        {useMemo(() => (
+          <div className="absolute inset-0 z-10 pointer-events-none">
+            <FireworksBackground
+              key="fireworks-bg"
+              population={3}
+              color={["#a259ff", "#0099ff", "#ffe066", "#ff6f91"]}
+              fireworkSpeed={{ min: 4, max: 8 }}
+              particleSize={{ min: 2, max: 6 }}
+            />
+          </div>
+        ), [])}
       </div>
+
+      <ClientOnlyDots />
 
       <div className="text-center text-white relative z-10 drop-shadow-2xl">
         <motion.div
@@ -71,9 +106,9 @@ export default function IntroPage({ isComplete }: IntroPageProps) {
             <motion.div
               animate={{ rotate: 360 }}
               transition={{ duration: 20, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
-              className="absolute inset-0"
+              className="absolute inset-0 flex items-center justify-center"
             >
-              <School className="absolute inset-0 m-auto w-20 h-20 text-white" />
+              <img src={schoolLogo} alt="شعار المدرسة" className="w-24 h-24 rounded-full object-contain bg-white/80 border border-white/40 shadow-lg" />
             </motion.div>
             {[...Array(6)].map((_, i) => (
               <motion.div

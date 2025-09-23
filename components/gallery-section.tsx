@@ -1,58 +1,60 @@
 "use client"
 
+
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { X, ZoomIn } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import RollingGallery from "./RollingGallery"
 
 const galleryImages = [
   {
     id: 1,
-    src: "/saudi-national-day-school-celebration.jpg",
-    alt: "احتفال اليوم الوطني في المدرسة",
-    title: "احتفال اليوم الوطني",
+    src: "/بالتعاون مع إدارة الموهوبين أوقيمت دورة تدريبية بعنوان اصنع المعجزة للطلاب الموهوبين بالمدرسة.jpeg",
+    alt: "بالتعاون مع إدارة الموهوبين أُقيمت دورة تدريبية بعنوان 'اصنع المعجزة'",
+    title: "دورة تدريبية",
   },
   {
     id: 2,
-    src: "/saudi-students-flag-ceremony.jpg",
-    alt: "طلاب يرفعون العلم السعودي",
-    title: "رفع العلم السعودي",
+    src: "/ssd.jpg",
+    alt: "برنامج توعوي يهدف إلى غرس ثقافة الوقاية وتعزيز وعي طلاب ثانوية الأمير مقرن بإجراءات الأمن والسلامة داخل المدرسة.",
+    title: "تدريب الطلاب على وسائل الأمن والسلامة",
   },
   {
     id: 3,
-    src: "/saudi-traditional-dance-students.jpg",
-    alt: "الرقص الشعبي السعودي",
-    title: "الرقص الشعبي",
+    src: "/sssa.jpg",
+    alt: "مدراء مدارس مكتب التعليم طويق للمدرسة اثناء عمل طلاب نوادي الحاسب",
+    title: "مدراء مدارس مكتب التعليم طويق للمدرسة",
   },
   {
     id: 4,
-    src: "/saudi-calligraphy-exhibition.jpg",
-    alt: "معرض الخط العربي",
-    title: "معرض الخط العربي",
+    src: "/moha.jpg",
+    alt: "دروس عملية تطبيقية.",
+    title: "دروس عملية تطبيقية.",
   },
   {
     id: 5,
-    src: "/saudi-poetry-competition.jpg",
-    alt: "مسابقة الشعر الوطني",
-    title: "مسابقة الشعر",
+    src: "/lie.jpg",
+    alt: "اجواء من التفاؤل والطمأنينة.",
+    title: "اجواء من التفاؤل والطمأنينة.",
   },
   {
     id: 6,
-    src: "/saudi-heritage-display.jpg",
-    alt: "عرض التراث السعودي",
-    title: "التراث السعودي",
+    src: "/man.jpg",
+    alt: "مسابقة أفضل زي تراثي.",
+    title: "مسابقة أفضل زي تراثي.",
   },
   {
     id: 7,
-    src: "/placeholder.svg?height=450&width=350",
-    alt: "تكريم الطلاب المتفوقين",
-    title: "تكريم المتفوقين",
+    src: "/ball.jpg",
+    alt: "فعاليات النشاط الرياضي.",
+    title: "فعاليات النشاط الرياضي.",
   },
   {
     id: 8,
-    src: "/placeholder.svg?height=400&width=400",
-    alt: "جوقة المدرسة",
-    title: "جوقة المدرسة",
+    src: "/niggaa.jpg",
+    alt: "دورات مقدمة من طلاب النشاط.",
+    title: "دورات مقدمة من طلاب النشاط.",
   },
 ]
 
@@ -69,11 +71,26 @@ export default function GallerySection() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-primary mb-6">معرض الصور</h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+          <h2
+            className="text-4xl md:text-5xl font-bold text-white mb-6 cursor-target"
+            style={{ textShadow: "0 2px 24px #0c672f, 0 0 8px #93DBB2, 0 0 2px #fff" }}
+          >
+            معرض الصور
+          </h2>
+          <p
+            className="text-xl text-white max-w-3xl mx-auto leading-relaxed"
+            style={{ textShadow: "0 2px 12px #0c672f, 0 0 8px #93DBB2" }}
+          >
             لحظات مميزة من احتفالاتنا وفعالياتنا المدرسية التي تعكس روح الانتماء والفخر بوطننا الغالي
           </p>
         </motion.div>
+        <div className="mb-12">
+          <RollingGallery
+            autoplay={true}
+            pauseOnHover={true}
+            images={galleryImages.map(img => img.src)}
+          />
+        </div>
 
         <div className="columns-1 md:columns-2 lg:columns-3 xl:columns-4 gap-6 space-y-6">
           {galleryImages.map((image, index) => (
