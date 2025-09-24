@@ -209,7 +209,7 @@ export default function Footer() {
           <p className="text-white/40 text-sm">تم التطوير بكل فخر واعتزاز احتفالاً باليوم الوطني السعودي المجيد ღ</p>
           <div className="text-white/40 text-sm mt-2">
             <span className="hover:text-secondary transition-colors cursor-pointer cursor-target">
-              تم تطويره من قبل أحمد عبدالله زكور و محمد مسفر القحطاني
+              تم تطويره من قبل 'أحمد عبدالله زكور' و 'محمد مسفر القحطاني'
             </span>
           </div>
         </motion.div>
