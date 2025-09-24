@@ -35,42 +35,41 @@ const events = [
     description:
       "فعالية فنية تجمع الطلاب للاحتفال بألوان العلم السعودي تحت شعار 'عِزنا بطبعنا'",
     icon: Trophy,
-    image: "/saudi-flag-colors-festival-students-art.jpg",
-    status: "قريباً",
+    image: "/images/draw.jpg",
     color: "from-blue-500 to-indigo-600",
   },
   {
-    id: 4,
+          // تم حذف الحالة
     title: "ندوة تاريخ المملكة ورؤية 2030",
     description:
       "ندوة تعليمية عن تاريخ المملكة العربية السعودية وإنجازاتها ورؤية 2030 المستقبلية",
     icon: Users,
     image: "/saudi-arabia-history-seminar-educational.jpg",
-    status: "قريباً",
+  // status removed
     color: "from-purple-500 to-violet-600",
   },
   {
-    id: 5,
+          // تم حذف الحالة
     title: "معرض العلوم والتجارب المخبرية",
     description:
       "فعالية علمية تتيح لطلاب ثانوية الأمير مقرن استكشاف أسرار الطبيعة عبر التجارب العملية والتعلم بالنمذجة في بيئة محفزة على البحث والاكتشاف.",
     icon: Award,
     image: "/edu.jpg",
-    status: "قريباً",
+  // status removed
     color: "from-red-500 to-pink-600",
   },
   {
-    id: 6,
+          // تم حذف الحالة
     title: "مسابقة الخط العربي الوطنية",
     description:
       "مسابقة في فن الخط العربي بعبارات وطنية مميزة احتفالاً باليوم الوطني السعودي",
     icon: Calendar,
     image: "/arabic-calligraphy-competition-patriotic-phrases.jpg",
-    status: "قريباً",
+  // status removed
     color: "from-teal-500 to-cyan-600",
   },
 ]
-
+          // تم حذف الحالة
 export default function EventsSection() {
 
 
@@ -80,7 +79,7 @@ export default function EventsSection() {
         {[...Array(20)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute"
+          // تم حذف الحالة
             style={{
               top: `${Math.random() * 100}%`,
               left: `${Math.random() * 100}%`,
@@ -90,7 +89,7 @@ export default function EventsSection() {
             animate={{
               rotate: 360,
               scale: [1, 1.2, 1],
-              opacity: [0.1, 0.3, 0.1],
+          // تم حذف الحالة
             }}
             transition={{
               duration: Math.random() * 15 + 10,
@@ -229,18 +228,7 @@ export default function EventsSection() {
                     transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
                   />
 
-                  <motion.div
-                    className="absolute top-4 left-4"
-                    initial={{ scale: 0, rotate: -180 }}
-                    animate={{ scale: 1, rotate: 0 }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                  >
-                    <div
-                      className={`px-3 py-1 rounded-full text-xs font-bold text-white bg-gradient-to-r ${event.color} backdrop-blur-sm`}
-                    >
-                      {event.status}
-                    </div>
-                  </motion.div>
+                  {/* Removed status label */}
 
                   <motion.div
                     className="absolute top-4 right-4"

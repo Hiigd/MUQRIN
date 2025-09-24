@@ -9,18 +9,17 @@ import { useState, useRef, useEffect } from "react"
 import { Dialog } from "@/components/ui/dialog"
 import ProfileCard from "@/components/ui/ProfileCard";
 
+
 interface Event {
   id: number;
   title: string;
   description: string;
   image: string;
-  participants: number;
-  date: string;
-  status: string;
   color: string;
   icon: any;
+}
 
-
+export default function EventsSection2() {
   const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
   const [stickers, setStickers] = useState<{x: number, y: number, id: number}[]>([]);
   const stickerId = useRef(0);
@@ -28,7 +27,6 @@ interface Event {
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key.toLowerCase() === 'j') {
-        // احصل على إحداثيات الماوس الأخيرة
         document.body.style.cursor = 'crosshair';
         const handleClick = (ev: MouseEvent) => {
           stickerId.current += 1;
@@ -44,55 +42,39 @@ interface Event {
   }, []);
 
   const events: Event[] = [
-	{
-		id: 1,
-		title: "مسابقة الشعر الوطني - اليوم الوطني 95",
-		description:
-			"مسابقة شعرية تحتفي بحب الوطن والانتماء للمملكة العربية السعودية في ذكرى اليوم الوطني",
-		icon: BookOpen,
-		date: "23 سبتمبر 2024",
-		participants: 120,
-		image: "/arabic-poetry-competition-saudi-students.jpg",
-		status: "مكتملة",
-		color: "from-emerald-500 to-green-600",
-	},
-	{
-		id: 2,
-		title: "معرض التراث السعودي الأصيل",
-		description:
-			"معرض يعرض التراث الشعبي والثقافة السعودية الأصيلة بمشاركة طلاب ثانوية الأمير مقرن",
-		icon: Star,
-		date: "24 سبتمبر 2024",
-		participants: 200,
-		image: "/saudi-heritage-exhibition-traditional-items.jpg",
-		status: "جارية",
-		color: "from-amber-500 to-orange-600",
-	},
-	{
-		id: 3,
-		title: "مهرجان الألوان الوطنية - عِزنا بطبعنا",
-		description:
-			"فعالية فنية تجمع الطلاب للاحتفال بألوان العلم السعودي تحت شعار 'عِزنا بطبعنا'",
-		icon: Trophy,
-		date: "25 سبتمبر 2024",
-		participants: 150,
-		image: "/saudi-flag-colors-festival-students-art.jpg",
-		status: "قريباً",
-		color: "from-blue-500 to-indigo-600",
-	},
-	{
-		id: 4,
-		title: "ندوة تاريخ المملكة ورؤية 2030",
-		description:
-			"ندوة تعليمية عن تاريخ المملكة العربية السعودية وإنجازاتها ورؤية 2030 المستقبلية",
-		icon: Users,
-		date: "26 سبتمبر 2024",
-		participants: 180,
-		image: "/saudi-arabia-history-seminar-educational.jpg",
-		status: "مكتملة",
-		color: "from-fuchsia-500 to-pink-600",
-	},
-];
+    {
+      id: 1,
+      title: "مسابقة الشعر الوطني - اليوم الوطني 95",
+      description: "مسابقة شعرية تحتفي بحب الوطن والانتماء للمملكة العربية السعودية في ذكرى اليوم الوطني",
+      icon: BookOpen,
+      image: "/arabic-poetry-competition-saudi-students.jpg",
+      color: "from-emerald-500 to-green-600",
+    },
+    {
+      id: 2,
+      title: "معرض التراث السعودي الأصيل",
+      description: "معرض يعرض التراث الشعبي والثقافة السعودية الأصيلة بمشاركة طلاب ثانوية الأمير مقرن",
+      icon: Star,
+      image: "/saudi-heritage-exhibition-traditional-items.jpg",
+      color: "from-amber-500 to-orange-600",
+    },
+    {
+      id: 3,
+      title: "مهرجان الألوان الوطنية - عِزنا بطبعنا",
+      description: "فعالية فنية تجمع الطلاب للاحتفال بألوان العلم السعودي تحت شعار 'عِزنا بطبعنا'",
+      icon: Trophy,
+      image: "/draw.jpg",
+      color: "from-blue-500 to-indigo-600",
+    },
+    {
+      id: 4,
+      title: "ندوة تاريخ المملكة ورؤية 2030",
+      description: "ندوة تعليمية عن تاريخ المملكة العربية السعودية وإنجازاتها ورؤية 2030 المستقبلية",
+      icon: Users,
+      image: "/saudi-arabia-history-seminar-educational.jpg",
+      color: "from-fuchsia-500 to-pink-600",
+    },
+  ];
 
 
   return (
@@ -121,16 +103,7 @@ interface Event {
                     <p className="text-muted-foreground mb-4 leading-relaxed">
                       {event.description}
                     </p>
-                    <div className="flex items-center justify-between text-sm text-muted-foreground mb-4">
-                      <div className="flex items-center gap-2">
-                        <Calendar className="w-4 h-4" />
-                        <span>{event.date}</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <Users className="w-4 h-4" />
-                        <span>{event.participants} مشارك</span>
-                      </div>
-                    </div>
+                    {/* تم حذف التاريخ وعدد المشاركين وحالة الفعالية */}
                     <Button
                       variant="outline"
                       size="sm"
@@ -154,7 +127,7 @@ interface Event {
                     name={selectedEvent.title}
                     title="تفاصيل الفعالية"
                     description={selectedEvent.description}
-                    status={`${selectedEvent.participants} مشارك`}
+                    // تم حذف حالة الفعالية وعدد المشاركين
                     contactText="إغلاق"
                     onContactClick={() => setSelectedEvent(null)}
                   />
