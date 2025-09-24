@@ -97,7 +97,7 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="https://pmss.pw/about"
+                  href="https://pmss.pw/html/about-us.html"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-white/80 hover:text-secondary transition-colors flex items-center gap-2 cursor-target"
@@ -106,17 +106,7 @@ export default function Footer() {
                   <ExternalLink className="w-4 h-4" />
                 </a>
               </li>
-              <li>
-                <a
-                  href="https://pmss.pw/news"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-white/80 hover:text-secondary transition-colors flex items-center gap-2 cursor-target"
-                >
-                  الأخبار
-                  <ExternalLink className="w-4 h-4" />
-                </a>
-              </li>
+              {/* الأخبار تم إخفاؤها */}
             </ul>
           </motion.div>
 
@@ -216,11 +206,11 @@ export default function Footer() {
             <div className="h-px w-16 bg-secondary"></div>
           </div>
           <p className="text-white/60 mb-2">© 2024 ثانوية الأمير مقرن بن عبدالعزيز. جميع الحقوق محفوظة.</p>
-          <p className="text-white/40 text-sm">تم التطوير بكل فخر واعتزاز احتفالاً باليوم الوطني السعودي المجيد</p>
+          <p className="text-white/40 text-sm">تم التطوير بكل فخر واعتزاز احتفالاً باليوم الوطني السعودي المجيد ღ</p>
           <div className="text-white/40 text-sm mt-2">
-            <LinkPreview url="https://pmss.pw">
-              <span className="hover:text-secondary transition-colors cursor-pointer cursor-target">زيارة الموقع الرسمي: pmss.pw</span>
-            </LinkPreview>
+            <span className="hover:text-secondary transition-colors cursor-pointer cursor-target">
+              تم تطويره من قبل أحمد عبدالله زكور و محمد مسفر القحطاني
+            </span>
           </div>
         </motion.div>
       </div>
