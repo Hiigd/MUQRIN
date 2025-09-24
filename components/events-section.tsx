@@ -278,14 +278,7 @@ export default function EventsSection() {
                   </motion.p>
 
                   <div className="flex items-center justify-between text-sm text-muted-foreground mb-4">
-                    <motion.div className="flex items-center gap-2" whileHover={{ scale: 1.05 }}>
-                      <Calendar className="w-4 h-4" />
-                      <span>{event.date}</span>
-                    </motion.div>
-                    <motion.div className="flex items-center gap-2" whileHover={{ scale: 1.05 }}>
-                      <Users className="w-4 h-4" />
-                      <span>{event.participants} مشارك</span>
-                    </motion.div>
+                    {/* تم حذف التاريخ وعدد المشاركين */}
                   </div>
 
 
