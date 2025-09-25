@@ -10,9 +10,9 @@ import RollingGallery from "./RollingGallery"
 const galleryImages = [
   {
     id: 1,
-    src: "/بالتعاون مع إدارة الموهوبين أوقيمت دورة تدريبية بعنوان اصنع المعجزة للطلاب الموهوبين بالمدرسة.jpeg",
-    alt: "بالتعاون مع إدارة الموهوبين أُقيمت دورة تدريبية بعنوان 'اصنع المعجزة'",
-    title: "دورة تدريبية",
+    src: "/asl.jpg",
+    alt: "",
+    title: "طلاب يرسمون لوحة فنية احتفالاً باليوم الوطني.",
   },
   {
     id: 2,
@@ -22,44 +22,45 @@ const galleryImages = [
   },
   {
     id: 3,
-    src: "/sssa.jpg",
-    alt: "مدراء مدارس مكتب التعليم طويق للمدرسة اثناء عمل طلاب نوادي الحاسب",
-    title: "مدراء مدارس مكتب التعليم طويق للمدرسة",
+    src: "/msmr.jpg",
+    alt: "",
+    title: "عمل الطلاب على مشروع فني باستخدام المسامير والخيوط.",
   },
   {
     id: 4,
-    src: "/moha.jpg",
-    alt: "دروس عملية تطبيقية.",
-    title: "دروس عملية تطبيقية.",
+    src: "/tawn.jpg",
+    alt: "",
+    title: "طلاب يزينون الممرات بلافتات وطنية.",
   },
   {
     id: 5,
-    src: "/lie.jpg",
-    alt: "اجواء من التفاؤل والطمأنينة.",
-    title: "اجواء من التفاؤل والطمأنينة.",
+    src: "/rbt.jpg",
+    alt: "",
+    title: "مشروع برمجي باستخدام الروبوتات.",
   },
   {
     id: 6,
+    src: "/sta.jpg",
+    alt: "",
+    title: "معلم يشرف على طلاب يرسمون لوحة وطنية.",
+  },
+  {
+  id: 7,
+  src: "/me.jpg",
+  alt: "",
+  title: "طلاب يشاركون في فعالية تقنية لليوم الوطني."
+  },
+  {
+    id: 4,
     src: "/man.jpg",
     alt: "مسابقة أفضل زي تراثي.",
     title: "مسابقة أفضل زي تراثي.",
-  },
-  {
-    id: 7,
-    src: "/ball.jpg",
-    alt: "فعاليات النشاط الرياضي.",
-    title: "فعاليات النشاط الرياضي.",
-  },
-  {
-    id: 8,
-    src: "/niggaa.jpg",
-    alt: "دورات مقدمة من طلاب النشاط.",
-    title: "دورات مقدمة من طلاب النشاط.",
-  },
+  }
 ]
 
 export default function GallerySection() {
   const [selectedImage, setSelectedImage] = useState<(typeof galleryImages)[0] | null>(null)
+  const [zoomed, setZoomed] = useState(false)
 
   return (
     <section id="gallery" className="py-20 bg-muted/30">
@@ -132,7 +133,7 @@ export default function GallerySection() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4"
-            onClick={() => setSelectedImage(null)}
+            onClick={() => { setSelectedImage(null); setZoomed(false); }}
           >
             <motion.div
               initial={{ scale: 0.8, opacity: 0 }}
@@ -141,18 +142,20 @@ export default function GallerySection() {
               className="relative max-w-4xl max-h-[90vh] w-full"
               onClick={(e) => e.stopPropagation()}
             >
-              <img
-                src={selectedImage.src || "/placeholder.svg"}
-                alt={selectedImage.alt}
-                className="w-full h-full object-contain rounded-lg"
-              />
-              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-6 rounded-b-lg">
-                <h3 className="text-white text-xl font-semibold">{selectedImage.title}</h3>
+              <div className="flex flex-row-reverse items-center gap-6">
+                <img
+                  src={selectedImage.src || "/placeholder.svg"}
+                  alt={selectedImage.alt}
+                  className="block mx-auto my-0 max-h-[80vh] max-w-full object-contain rounded-lg cursor-zoom-in"
+                  style={{ transition: 'transform 0.3s', transform: zoomed ? 'scale(1.7)' : 'scale(1)' }}
+                  onClick={() => setZoomed(!zoomed)}
+                />
+                <h3 className="text-white text-xl font-semibold whitespace-pre-line max-w-xs text-right">{selectedImage.title}</h3>
               </div>
               <Button
                 variant="ghost"
                 size="icon"
-                onClick={() => setSelectedImage(null)}
+                onClick={() => { setSelectedImage(null); setZoomed(false); }}
                 className="absolute top-4 left-4 bg-black/50 hover:bg-black/70 text-white"
               >
                 <X className="w-6 h-6" />
